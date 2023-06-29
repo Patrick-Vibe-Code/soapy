@@ -1,14 +1,15 @@
-const express = require("express");
-const router = express.Router();
+const crypto = require("crypto");
+const validTokens = require("../tokenStore");
 
-router.post("/api/check-password", (req, res) => {
+const checkPassword = (req, res) => {
   const userPassword = req.body.password;
-
-  if (userPassword === process.env.PASSWORD) {
-    res.send("Correct");
+  if (userPassword && userPassword === process.env.PASSWORD) {
+    const token = crypto.randomBytes(32).toString("hex");
+    validTokens.add(token);
+    res.json({ status: "Correct", token });
   } else {
-    res.send("Password is incorrect");
+    res.status(401).json({ status: "Incorrect" });
   }
-});
+};
 
-module.exports = router;
+module.exports = checkPassword;

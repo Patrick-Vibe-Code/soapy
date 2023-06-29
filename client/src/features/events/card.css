@@ -38,3 +38,30 @@
 #box-content:hover .edit-icon {
   visibility: visible;
 }
+
+.status-history {
+  margin-top: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.status-bubble-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.status-bubble-avatar {
+  flex-shrink: 0;
+}
+
+.status-bubble {
+  background: #fff3ee;
+  border-radius: 0 16px 16px 16px;
+  padding: 0.3rem 0.85rem;
+  font-size: 0.8rem;
+  color: #7a5c52;
+  box-shadow: 0 1px 4px rgba(200, 140, 120, 0.15);
+  line-height: 1.4;
+}

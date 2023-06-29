@@ -6,8 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server/server.js",
+    "server:dev": "nodemon server/devServer.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dev": "concurrently \"npm run server:dev\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -29,6 +30,7 @@
     "nodemon": "^2.0.22"
   },
   "devDependencies": {
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "mongodb-memory-server": "^11.0.1"
   }
 }

@@ -1,10 +1,13 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "./header";
-import './login.css'
-const Login = ({ setAuthenticated, authenticated }) => {
+import Header from "../../shared/components/Header";
+import { useAuth } from "./AuthContext";
+import "./login.css";
+
+const Login = () => {
   const navigate = useNavigate();
+  const { authenticated, setAuthenticated } = useAuth();
   const [password, setPassword] = useState("");
 
   useEffect(() => {
@@ -17,9 +20,10 @@ const Login = ({ setAuthenticated, authenticated }) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/check-password", { password });
-      if (response.data === "Correct") {
+      if (response.data.status === "Correct") {
         setAuthenticated(true);
         localStorage.setItem("lastAuthenticated", Date.now());
+        localStorage.setItem("authToken", response.data.token);
       } else {
         alert("Wrong Password");
       }
@@ -40,7 +44,7 @@ const Login = ({ setAuthenticated, authenticated }) => {
           <div className="container mx-5">
             <form
               className="form"
-              onSubmit={(e) => handleSubmit(e)}
+              onSubmit={handleSubmit}
               style={{
                 display: "flex",
                 flexDirection: "column",

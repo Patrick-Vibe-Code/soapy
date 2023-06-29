@@ -1,12 +1,10 @@
 import React from "react";
-import Header from "./header";
-const Layout = ({ children, setAuthenticated, setSelectedProfile }) => {
+import Header from "./Header";
+
+const Layout = ({ children }) => {
   return (
     <>
-      <Header
-        setAuthenticated={setAuthenticated}
-        setSelectedProfile={setSelectedProfile}
-      />
+      <Header />
       <section className="section">
         <div className="container">
           <div className="columns">{children}</div>
